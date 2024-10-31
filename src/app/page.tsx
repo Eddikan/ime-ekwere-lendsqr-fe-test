@@ -2,7 +2,7 @@
 export default function Home() {
   return (
 <div>
-  Ime's test
+  Ime&apos; test
 </div>
   );
 }
