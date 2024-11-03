@@ -58,12 +58,14 @@ const Login: React.FC = () => {
           <Image
             src="/lendsqr.svg"
             alt="welcome Banner"
+            priority
             width={173.76}
             height={36}
           />
           <Image
             src="/welcomeBanner.svg"
             alt="welcome Banner"
+            priority
             className={styles.welcomeBanner}
             width={600}
             height={337}
@@ -87,7 +89,7 @@ const Login: React.FC = () => {
             error={errors.password?.message}
             showTogglePassword={true}
           />
-           {/* <InputField
+          {/* <InputField
             label=""
             type="text"
             placeholder="Search for anything"
