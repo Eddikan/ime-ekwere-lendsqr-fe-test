@@ -16,7 +16,7 @@ const UserLayout: React.FC<LayoutProps> = ({ children, name }) => {
   return (
     <div>
       <Navbar toggleSidebar={toggleSidebar} name={name} />
-      <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+      <Sidebar isOpen={sidebarOpen}  />
       <main className={`${styles.main} ${sidebarOpen ? styles.shifted : ""}`}>{children}</main>
     </div>
   );
