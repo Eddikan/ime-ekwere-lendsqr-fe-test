@@ -5,10 +5,9 @@ import styles from "@/styles/Navbar.module.scss";
 
 type NavbarProps = {
   toggleSidebar: () => void;
-  name: string; // Make sure to pass this prop based on your data
 };
 
-const Navbar: React.FC<NavbarProps> = ({ toggleSidebar, name }) => {
+const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleLogout = (): void => {
@@ -37,7 +36,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar, name }) => {
           className={styles.profile}
           onClick={() => setDropdownOpen(!dropdownOpen)}
         >
-          <span>{name}</span>
+          <span>name</span>
           {dropdownOpen && (
             <div className={styles.dropdown}>
               <button onClick={handleLogout}>Logout</button>
