@@ -3,7 +3,12 @@
   --background: #ffffff;
   --foreground: #171717;
 }
-
+@font-face {
+  font-family: 'Work Sans';
+  src: url('/fonts/WorkSans-Regular.ttf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 @font-face {
   font-family: 'Avenir Next';
   src: url('/fonts/AvenirNext-Regular.otf') format('opentype');
@@ -20,5 +25,5 @@
 
 /* Apply the font globally */
 body {
-  font-family: 'Avenir Next', sans-serif;
+  font-family: 'Avenir Next';
 }

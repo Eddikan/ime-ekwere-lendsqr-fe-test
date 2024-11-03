@@ -1,6 +1,7 @@
 .sidebar {
+  font-family: "Work Sans";
   position: fixed;
-  width: 210px;
+  width: 240px;
   z-index: 10;
   background-color: #fff;
   height: 100vh;
@@ -50,8 +51,9 @@
     display: flex;
     gap: 10px;
     align-items: center;
-    padding: 10px ;
+    padding: 10px;
     margin: 42px 0 30px 0;
+    font-size: 16px;
     color: #333;
     text-decoration: none;
     &:hover,
@@ -61,23 +63,33 @@
   }
   .menu {
     margin-top: 1.5rem;
-
+    h6 {
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 14.08px;
+      text-align: left;
+      color: #545f7d;
+      margin: 30px 0px 10px 0px;
+    }
     .link {
       display: flex;
       gap: 10px;
       align-items: center;
       padding: 10px;
+      font-size: 16px;
       color: #333;
       text-decoration: none;
+      border-left: 3px solid transparent;
+      margin-top: 5px;
+
       &:hover,
       &.active {
-        background-color: red;
+        background-color: #f3fcfc;
+        border-left: 3px solid #39cdcc;
       }
     }
-    a.active{
-        background-color: red;
-
-
+    a.active {
+      background-color: #f3fcfc;
     }
   }
 }

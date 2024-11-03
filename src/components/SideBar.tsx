@@ -3,13 +3,15 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "@/styles/Sidebar.module.scss";
 import menuItems from "@/menuConfig/menu";
+import { usePathname } from 'next/navigation';
 type SidebarProps = {
   isOpen: boolean;
 };
 
+// side bar component here 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-
+  const pathname = usePathname();
   return (
     <main className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}>
       <div className={styles.switchOrg}>
@@ -44,16 +46,15 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
       <nav className={styles.menu}>
         {menuItems.map((menu, index) => (
           <div key={index}>
-            <div>{menu.section}</div>
+            <h6>{menu.section}</h6>
             {menu.routes.map((item) => (
-              <Link
-                className={styles.link}
+                <Link
                 key={item.name}
                 href={item.route}
                 passHref
+                className={`${styles.link} ${pathname === item.route ? styles.active : ''}`}
               >
-                <Image src={item.icon} alt="switch" width={16} height={16} />
-
+                <Image src={item.icon} alt={item.name} width={16} height={16} />
                 {item.name}
               </Link>
             ))}
