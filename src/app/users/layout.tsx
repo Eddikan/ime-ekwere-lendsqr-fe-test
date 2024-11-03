@@ -1,13 +1,23 @@
-// src/app/user/layout.tsx
+"use client";
+import React, { useState, ReactNode } from "react";
+import Sidebar from "@/components/SideBar";
+import Navbar from "@/components/Navbar";
+import styles from '@/styles/UserLayout.module.scss';
+type LayoutProps = {
+  children: ReactNode;
+  name: string; // Add name prop for Navbar
+};
 
-import React from "react";
+const UserLayout: React.FC<LayoutProps> = ({ children, name }) => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-const UserLayout = ({ children }: { children: React.ReactNode }) => {
+  const toggleSidebar = (): void => setSidebarOpen(!sidebarOpen);
+
   return (
     <div>
-      <header>User Layout Header</header>
-      <main>{children}</main>
-      <footer>User Layout Footer</footer>
+      <Navbar toggleSidebar={toggleSidebar} name={name} />
+      <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+      <main className={`${styles.main} ${sidebarOpen ? styles.shifted : ""}`}>{children}</main>
     </div>
   );
 };

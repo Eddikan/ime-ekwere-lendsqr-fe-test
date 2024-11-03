@@ -1,0 +1,66 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 11;
+  width: 100vw;
+  background-color: white;
+  padding: 30px 30px 30px 0px;
+  box-shadow: 3px 0px 20px 0px #0000000A;
+
+
+  .hamburger {
+    display: none;
+    font-size: 1.5rem;
+  }
+  .leftSection {
+    display: flex;
+    align-items: center;
+
+    .logo {
+      font-weight: bold;
+      color: #333;
+    }
+  }
+
+  .search {
+    flex: 1;
+    max-width: 400px;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+  }
+
+  .rightSection {
+    display: flex;
+    align-items: center;
+
+    .notificationIcon {
+      margin: 0 1rem;
+    }
+
+    .profile {
+      position: relative;
+      cursor: pointer;
+
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: #f9f9f9;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar .hamburger {
+    display: block;
+  }
+  .navbar .search {
+    display: none;
+  }
+}
