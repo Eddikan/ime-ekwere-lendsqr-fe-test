@@ -1,0 +1,22 @@
+.layout {
+    display: flex;
+  }
+  
+  .main {
+    transition: transform 0.3s ease;
+    padding: 100px 300px;
+    background-color: #FBFBFB;
+    min-height: 100vh;
+  }
+  
+ 
+  @media (max-width: 768px) {
+  
+    .main {
+      transform: translateX(0px);
+    padding: 100px 30px;
+
+
+    }
+  }
+  
