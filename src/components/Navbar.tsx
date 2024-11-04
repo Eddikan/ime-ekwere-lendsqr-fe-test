@@ -1,8 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "@/styles/Navbar.module.scss";
-
+import NavBarSearch from "@/components/NavBarSearch";
 type NavbarProps = {
   toggleSidebar: () => void;
 };
@@ -17,26 +18,37 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
   return (
     <header className={styles.navbar}>
       <div className={styles.leftSection}>
-   
         <Link className={styles.logo} href="/">
-          lendsqr
+          <Image
+            src="/lendsqr.svg"
+            alt="welcome Banner"
+            priority
+            width={144}
+            height={30}
+          />
         </Link>
       </div>
-
-      <input
-        type="text"
-        placeholder="Search for anything"
-        className={styles.search}
-      />
+      <NavBarSearch />
 
       <div className={styles.rightSection}>
-        <Link href="/docs">Docs</Link>
-        <button className={styles.notificationIcon}>🔔</button>
+        <Link href="/docs" className={styles.docs}>
+          Docs
+        </Link>
+        <Image src="/bell.png" alt="bell" priority width={26} height={26} />
         <div
           className={styles.profile}
           onClick={() => setDropdownOpen(!dropdownOpen)}
         >
-          <span>name</span>
+          <div className={styles.profileAvi}>AE</div>
+          <span className={styles.name}>name</span>
+          <Image
+            src="/dropdown2.svg"
+            alt="bell"
+            priority
+            width={7}
+            height={4}
+          />
+
           {dropdownOpen && (
             <div className={styles.dropdown}>
               <button onClick={handleLogout}>Logout</button>
@@ -45,8 +57,8 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
         </div>
       </div>
       <button onClick={toggleSidebar} className={styles.hamburger}>
-          ☰
-        </button>
+        ☰
+      </button>
     </header>
   );
 };

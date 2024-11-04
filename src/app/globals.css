@@ -26,4 +26,5 @@
 /* Apply the font globally */
 body {
   font-family: 'Avenir Next';
+  margin:0px
 }

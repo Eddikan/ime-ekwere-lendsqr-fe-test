@@ -1,11 +1,11 @@
 .sidebar {
   font-family: "Work Sans";
   position: fixed;
-  width: 240px;
+  width: 250px;
   z-index: 10;
   background-color: #fff;
   height: 100vh;
-  padding: 110px 10px 10px 10px;
+  padding: 110px 10px 10px 0px;
   overflow-y: auto;
   box-shadow: 0px 5px 20px 0px #0000000a;
 
@@ -17,7 +17,7 @@
     position: relative;
     cursor: pointer;
     display: flex;
-    padding: 10px;
+    padding: 10px 10px 10px 30px; 
     align-items: center;
     gap: 10px;
     color: #213f7d;
@@ -51,7 +51,7 @@
     display: flex;
     gap: 10px;
     align-items: center;
-    padding: 10px;
+    padding: 10px 10px 10px 30px;
     margin: 42px 0 30px 0;
     font-size: 16px;
     color: #333;
@@ -69,7 +69,7 @@
       line-height: 14.08px;
       text-align: left;
       color: #545f7d;
-      margin: 30px 0px 10px 0px;
+      margin: 30px 0px 10px 30px;
     }
     .link {
       display: flex;
@@ -81,6 +81,7 @@
       text-decoration: none;
       border-left: 3px solid transparent;
       margin-top: 5px;
+      padding-left: 27px;
 
       &:hover,
       &.active {

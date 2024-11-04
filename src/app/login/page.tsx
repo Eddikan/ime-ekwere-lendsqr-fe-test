@@ -89,14 +89,7 @@ const Login: React.FC = () => {
             error={errors.password?.message}
             showTogglePassword={true}
           />
-          {/* <InputField
-            label=""
-            type="text"
-            placeholder="Search for anything"
-            register={{ ...register("search") }}
-            endIcon={<FiSearch />}
-            onIconClick={() => console.log("Search clicked")}
-          /> */}
+       
           <p className={styles.forgotPassword}>FORGOT PASSWORD?</p>
 
           <div>
