@@ -1,0 +1,32 @@
+.cardsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 26px;
+  margin-bottom: 40px;
+}
+
+.card {
+  border-radius: 4px;
+  padding: 20px 30px;
+  text-align: start;
+
+  box-shadow: 3px 5px 20px 0px #0000000a;
+
+  border-style: solid;
+
+  border-color: #213f7d0f;
+
+  h3 {
+    font-family: "Work Sans";
+    font-size: 14px;
+    font-weight: 500;
+    color: #545f7d;
+    margin: 14px 0px 12px 0px;
+  }
+  p {
+    margin: 0px;
+    font-family: "Work Sans";
+    font-size: 24px;
+    font-weight: 600;
+  }
+}
