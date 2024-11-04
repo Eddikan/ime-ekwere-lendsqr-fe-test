@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { useAppDispatch } from '@/store/hooks';
+import { login } from '@/store/userSlice';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Button from "@/components/Button";
@@ -32,6 +34,7 @@ const schema = yup.object().shape({
 });
 
 const Login: React.FC = () => {
+  const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const {
@@ -45,9 +48,14 @@ const Login: React.FC = () => {
   const onSubmit = (data: LoginFormInputs) => {
     console.log("data is", data);
     setLoading(true);
+    
+    // Dispatch email to the Redux store
+    dispatch(login(data.email));
+
+    // Simulate an async operation (like an API call)
     setTimeout(() => {
       setLoading(false);
-      router.push("/users");
+      router.push("/users"); // Navigate to the users page
     }, 3000);
   };
 

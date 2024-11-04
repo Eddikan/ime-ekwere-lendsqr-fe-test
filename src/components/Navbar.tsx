@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useAppSelector } from "@/store/hooks";
 import styles from "@/styles/Navbar.module.scss";
 import NavBarSearch from "@/components/NavBarSearch";
 type NavbarProps = {
@@ -9,6 +10,7 @@ type NavbarProps = {
 };
 
 const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
+  const email = useAppSelector((state) => state.user.email);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleLogout = (): void => {
@@ -27,8 +29,9 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
             height={30}
           />
         </Link>
-      </div>
       <NavBarSearch />
+
+      </div>
 
       <div className={styles.rightSection}>
         <Link href="/docs" className={styles.docs}>
@@ -39,8 +42,8 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
           className={styles.profile}
           onClick={() => setDropdownOpen(!dropdownOpen)}
         >
-          <div className={styles.profileAvi}>AE</div>
-          <span className={styles.name}>name</span>
+          <div className={styles.profileAvi}>{email?.charAt(0)}</div>
+          <span className={styles.name}>{email}</span>
           <Image
             src="/dropdown2.svg"
             alt="bell"
@@ -48,7 +51,12 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
             width={7}
             height={4}
           />
-
+          {dropdownOpen && (
+            <div
+              className={styles.dropdownOverlay}
+              onClick={() => setDropdownOpen(false)}
+            ></div>
+          )}
           {dropdownOpen && (
             <div className={styles.dropdown}>
               <button onClick={handleLogout}>Logout</button>
