@@ -35,6 +35,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-
+you can login with any username or password provided it passes the authentication
 the styling consists of scss, react styled components and css
 i used react-query and axios for the api request
+i used the appropraite fonts for each page

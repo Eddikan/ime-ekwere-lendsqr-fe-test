@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useAppSelector } from "@/store/hooks";
 import styles from "@/styles/Navbar.module.scss";
 import NavBarSearch from "@/components/NavBarSearch";
+import { useRouter } from "next/navigation";
+
 type NavbarProps = {
   toggleSidebar: () => void;
 };
@@ -12,9 +14,10 @@ type NavbarProps = {
 const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
   const email = useAppSelector((state) => state.user.email);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const router = useRouter();
 
   const handleLogout = (): void => {
-    window.location.href = "/login"; // or use a router if you'd like
+    router.push("/login");
   };
 
   return (
@@ -29,15 +32,21 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
             height={30}
           />
         </Link>
-      <NavBarSearch />
-
+        <NavBarSearch />
       </div>
 
       <div className={styles.rightSection}>
         <Link href="/docs" className={styles.docs}>
           Docs
         </Link>
-        <Image className={styles.bell} src="/bell.png" alt="bell" priority width={26} height={26} />
+        <Image
+          className={styles.bell}
+          src="/bell.png"
+          alt="bell"
+          priority
+          width={26}
+          height={26}
+        />
         <div
           className={styles.profile}
           onClick={() => setDropdownOpen(!dropdownOpen)}
