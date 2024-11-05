@@ -3,19 +3,31 @@
   align-items: center;
   justify-content: space-between;
   margin-top: 20px;
+
   .paginationControls {
+    display: flex;
+    align-items: center;
+    
     select {
-      margin: 0px 10px;
+      margin: 0 10px;
       background-color: #e5e8ee;
       padding: 7px 32px 7px 12px;
       border: none;
       appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
       background-image: url('/dropdown3.svg');
       background-repeat: no-repeat;
       background-position: right 10px center;
+
+      // Adjust padding for smaller screens
+      @media (max-width: 768px) {
+        padding: 6px 24px 6px 10px;
+      }
+      @media (max-width: 480px) {
+        padding: 5px 20px 5px 8px;
+        font-size: 12px;
+      }
     }
+
     select:focus {
       outline: none;
     }
@@ -25,8 +37,17 @@
       font-size: 14px;
       font-weight: 400;
       color: #545f7d;
+
+      // Reduce font size on smaller screens
+      @media (max-width: 768px) {
+        font-size: 13px;
+      }
+      @media (max-width: 480px) {
+        font-size: 12px;
+      }
     }
   }
+
   button {
     padding: 0.5rem;
     background-color: #e5e8ee;
@@ -34,6 +55,15 @@
     border: none;
     cursor: pointer;
     color: #4a4a4a;
+
+    // Adjust padding and font-size for mobile devices
+    @media (max-width: 768px) {
+      padding: 0.4rem;
+    }
+    @media (max-width: 480px) {
+      padding: 0.3rem;
+      font-size: 12px;
+    }
   }
 
   button:disabled {
@@ -43,27 +73,45 @@
 
   .active {
     font-weight: 500;
-    color: #545F7D;
-    cursor:pointer;
-
+    color: #545f7d;
+    cursor: pointer;
   }
-  .inActive{
-    color:#545F7D;
-    cursor:pointer;
+
+  .inActive {
+    color: #545f7d;
+    cursor: pointer;
   }
 
   .ellipsis {
     color: #888;
   }
+
   .leftArrow {
     transform: rotate(90deg);
   }
+
   .rightArrow {
     transform: rotate(270deg);
   }
+
   .pages {
     display: flex;
     align-items: center;
     gap: 20px;
+
+    // Reduce gap for smaller screens
+    @media (max-width: 768px) {
+      gap: 15px;
+    }
+    @media (max-width: 480px) {
+      gap: 10px;
+    }
+  }
+
+  // Stack pagination elements vertically on very small screens
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; // Add spacing between rows
   }
 }

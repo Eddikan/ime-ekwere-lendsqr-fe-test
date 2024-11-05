@@ -1,20 +1,35 @@
 .cardsContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr); // Default 4 columns
   gap: 26px;
   margin-bottom: 40px;
+
+  // Reduce columns for tablets
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  // Further reduce columns for small tablets and large phones
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px; // Reduce gap for smaller screens
+    margin-bottom: 30px;
+  }
+
+  // Single column for very small screens
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
 }
 
 .card {
   border-radius: 4px;
   padding: 20px 30px;
   text-align: start;
-
   box-shadow: 3px 5px 20px 0px #0000000a;
-
-  border-style: solid;
-
-  border-color: #213f7d0f;
+  border: 1px solid #213f7d0f;
 
   h3 {
     font-family: "Work Sans";
@@ -22,11 +37,39 @@
     font-weight: 500;
     color: #545f7d;
     margin: 14px 0px 12px 0px;
+
+    // Adjust font size on smaller screens
+    @media (max-width: 768px) {
+      font-size: 13px;
+      margin: 10px 0 8px 0;
+    }
+    @media (max-width: 480px) {
+      font-size: 12px;
+      margin: 8px 0 6px 0;
+    }
   }
+
   p {
-    margin: 0px;
+    margin: 0;
     font-family: "Work Sans";
     font-size: 24px;
     font-weight: 600;
+
+    // Adjust font size for responsive typography
+    @media (max-width: 768px) {
+      font-size: 20px;
+    }
+    @media (max-width: 480px) {
+      font-size: 18px;
+    }
+  }
+
+  // Adjust padding within the card for smaller screens
+  @media (max-width: 768px) {
+    padding: 16px 24px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px 18px;
   }
 }

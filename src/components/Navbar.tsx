@@ -37,7 +37,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
         <Link href="/docs" className={styles.docs}>
           Docs
         </Link>
-        <Image src="/bell.png" alt="bell" priority width={26} height={26} />
+        <Image className={styles.bell} src="/bell.png" alt="bell" priority width={26} height={26} />
         <div
           className={styles.profile}
           onClick={() => setDropdownOpen(!dropdownOpen)}

@@ -146,4 +146,19 @@
   .navbar .search {
     display: none;
   }
+  .bell {
+    display: none;
+  }
+  .rightSection {
+    margin-right: 10px!important;
+  }
+  .hamburger{
+    margin-right: 10px;
+  }
+  .name {
+    color: red !important;
+    display: none;
+    font-size: 16px;
+    font-weight: 500;
+  }
 }

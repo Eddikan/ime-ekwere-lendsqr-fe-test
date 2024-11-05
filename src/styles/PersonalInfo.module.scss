@@ -3,42 +3,74 @@
   box-shadow: 3px 5px 20px 0px #0000000a;
   padding: 30px;
   border-radius: 4px;
-  .container {
-    padding-bottom: 28px;
-    padding-top: 28px;
-    border-bottom: 1px solid #E9ECF2;
-  > h2 {
-    font-size: 16px;
-    font-weight: 500;
-    text-align: left;
-    margin: 0px 0px 30px 0px;
-    color: #213f7d;
+
+  // Media query for smaller screens (tablet and below)
+  @media (max-width: 768px) {
+    padding: 20px;
   }
 
-  .infoGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+  .container {
+    padding-top: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #E9ECF2;
 
-    div {
-      display: flex;
-      flex-direction: column;
+    // Responsive h2 styling
+    > h2 {
+      font-size: 16px;
+      font-weight: 500;
+      text-align: left;
+      margin: 0px 0px 30px 0px;
+      color: #213f7d;
 
-      strong {
-        font-size: 12px;
-        font-weight: 400;
-        color: #545f7d;
-        margin-bottom: 4px;
-        text-transform: uppercase;
+      // Adjust font-size on smaller screens
+      @media (max-width: 768px) {
+        font-size: 14px;
+        margin-bottom: 20px;
+      }
+    }
+
+    .infoGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); // Responsive grid
+      gap: 1rem;
+
+      // Adjust grid for smaller screens
+      @media (max-width: 768px) {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       }
 
-      span {
-        font-size: 16px;
-        font-weight: 500;
-        color: #545f7d;
+      @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+      }
+
+      div {
+        display: flex;
+        flex-direction: column;
+
+        strong {
+          font-size: 12px;
+          font-weight: 400;
+          color: #545f7d;
+          margin-bottom: 4px;
+          text-transform: uppercase;
+
+          // Adjust font-size on smaller screens
+          @media (max-width: 768px) {
+            font-size: 11px;
+          }
+        }
+
+        span {
+          font-size: 16px;
+          font-weight: 500;
+          color: #545f7d;
+
+          // Adjust font-size on smaller screens
+          @media (max-width: 768px) {
+            font-size: 14px;
+          }
+        }
       }
     }
   }
-}
-
 }
