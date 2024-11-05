@@ -10,11 +10,14 @@ const TableOptions: React.FC<TableOptionsProps> = ({ userId }) => {
   // State to manage visibility of the options
   const [showOptions, setShowOptions] = useState(false);
 
-  const handleBlacklist = () => alert("User Blacklisted");
-  const handleActivate = () => alert("User Activated");
+  const handleBlacklist = () => {
+    setShowOptions(false);
+  };
+  const handleActivate = () => {
+    setShowOptions(false);
+  };
   const handleViewDetails = () => {
-    // Your logic for viewing details, e.g., navigating to a details page
-    console.log(`Viewing details for user ID: ${userId}`);
+    setShowOptions(false);
   };
 
   // Function to toggle the visibility of the options
@@ -26,12 +29,12 @@ const TableOptions: React.FC<TableOptionsProps> = ({ userId }) => {
     <div className={styles.optionsContainer}>
       <span onClick={toggleOptions} className={styles.showText}>
         <Image
-            src="/users/tripleIcon.svg"
-            alt="tripleIcon"
-            priority
-            width={3}
-            height={14}
-          />
+          src="/users/tripleIcon.svg"
+          alt="tripleIcon"
+          priority
+          width={3}
+          height={14}
+        />
       </span>
       {showOptions && (
         <div
@@ -42,9 +45,36 @@ const TableOptions: React.FC<TableOptionsProps> = ({ userId }) => {
 
       {showOptions && (
         <div className={styles.options}>
-          <button onClick={handleViewDetails}>View Details</button>
-          <button onClick={handleBlacklist}>Blacklist User</button>
-          <button onClick={handleActivate}>Activate User</button>
+          <button onClick={handleViewDetails}>
+            <Image
+              src="/users/details.svg"
+              alt="details"
+              priority
+              width={16}
+              height={16}
+            />
+            View Details
+          </button>
+          <button onClick={handleBlacklist}>
+            <Image
+              src="/users/blacklist.png"
+              alt="blacklist"
+              priority
+              width={16}
+              height={16}
+            />
+            Blacklist User
+          </button>
+          <button onClick={handleActivate}>
+            <Image
+              src="/users/activate.png"
+              alt="blacklist"
+              priority
+              width={16}
+              height={16}
+            />
+            Activate User
+          </button>
         </div>
       )}
     </div>

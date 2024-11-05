@@ -1,75 +1,83 @@
 import React, { useState, useEffect } from "react";
 import styles from "@/styles/UsersTable.module.scss";
-import { useAppDispatch } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { getUsers } from "@/store/userSlice";
-import FilterPopup from "@/components/FilterPopup";
-import { useAppSelector } from "@/store/hooks";
 import { UserType } from "@/interfaces/users";
 import Pagination from "@/components/Pagination";
-import TableOptions from "./TableOptions";
-
+import Loader from "@/components/Loader"
+import FilterPopup from "@/components/FilterPopup";
+import TableOptions from "@/components/TableOptions";
 const UsersTable: React.FC = () => {
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const dispatch = useAppDispatch();
+  const users = useAppSelector((state) => state.user.users);
+  const [filteredData, setFilteredData] = useState<UserType[]>(users);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10); // Default to 10 items per page
 
   useEffect(() => {
-    const fetch = async () => {
+    const fetchData = async () => {
       try {
-        setLoading(true);
+console.log('usersss are',!users.length)
+
+      if(!users.length)  setLoading(true);
         await dispatch(getUsers());
       } catch (error) {
-        console.error("Error fetching user data:", error);
+        console.error(error);
         setError("Failed to fetch user data.");
       } finally {
         setLoading(false);
       }
     };
-
-    fetch();
+    fetchData();
   }, [dispatch]);
 
-  const users = useAppSelector((state) => state.user.users);
-  // const [filter, setFilter] = useState<string>("");
-  const [filteredData, setFilteredData] = useState<UserType[]>(users);
-  const [currentPage, setCurrentPage] = useState(1);
-  const pageCount = Math.ceil(filteredData.length / 10); // Assume 10 per page
+  useEffect(() => {
+    // Paginate filtered data based on current page and itemsPerPage
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    setFilteredData(users.slice(startIndex, endIndex));
+  }, [users, currentPage, itemsPerPage]);
 
-  // const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const value = e.target.value;
-  //   setFilter(value);
-  //   setFilteredData(
-  //     users.filter(
-  //       (user) =>
-  //         user.username.toLowerCase().includes(value.toLowerCase()) ||
-  //         user.email.toLowerCase().includes(value.toLowerCase())
-  //     )
-  //   );
-  // };
+  const pageCount = Math.ceil(users.length / itemsPerPage);
 
+  const handleItemsPerPageChange = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setItemsPerPage(Number(e.target.value));
+    setCurrentPage(1); // Reset to first page when items per page changes
+  };
   const handleFilter = (filterData: {
     username: string;
     email: string;
     date: string;
+    phoneNumber: string;
+    organization: string;
+    status: string;
   }) => {
-    const { username, email, date } = filterData;
-    const filtered = users.filter(
-      (user) =>
-        (!username || user.username.includes(username)) &&
-        (!email || user.email.includes(email)) &&
-        (!date || user.dateJoined === date)
-    );
-    setFilteredData(filtered);
-    setCurrentPage(1); // Reset to first page
+    // Filter users based on filterData
+    const filtered = users.filter((user) => {
+      return (
+        (filterData.organization === "" ||
+          user.organization.includes(filterData.organization)) &&
+        (filterData.username === "" ||
+          user.username.toLowerCase().includes(filterData.username.toLowerCase())) &&
+        (filterData.email === "" ||
+          user.email.toLowerCase().includes(filterData.email.toLowerCase())) &&
+        (filterData.phoneNumber === "" ||
+          user.phoneNumber.includes(filterData.phoneNumber)) &&
+        (filterData.date === "" || user.dateJoined.startsWith(filterData.date)) &&
+        (filterData.status === "" || user.status === filterData.status)
+      );
+    });
+
+    setFilteredData(filtered); // Update `filteredData` with the filtered users
+    setCurrentPage(1); // Reset to the first page when filter changes
   };
 
-  // const handleReset = () => {
-  //   setFilteredData(users);
-  //   setCurrentPage(1);
-  //   setIsPopupVisible(false); // Close the popup after resetting
-  // };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading ) return <Loader />
   if (error) return <p>{error}</p>;
 
   return (
@@ -117,38 +125,48 @@ const UsersTable: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredData.map((user) => (
-            <tr key={user.id}>
-              <td>{user.organization}</td>
-              <td>{user.username}</td>
-              <td>{user.email}</td>
-              <td>{user.phoneNumber}</td>
-              <td>{user.dateJoined}</td>
-              <td>
-                <span
-                  className={
-                    user.status === "Active"
-                      ? styles.activeStatus
-                      : user.status === "Blacklisted"
-                      ? styles.blacklistedStatus
-                      : user.status === "Pending"
-                      ? styles.pendingStatus
-                      : user.status === "Inactive"
-                      ? styles.inactiveStatus
-                      : styles.defaultStatus // Add a default case for other statuses
-                  }
-                >
-                  {user.status}
-                </span>
-              </td>
-              <td>
-                <TableOptions userId={user.id} />
-              </td>
-            </tr>
-          ))}
+        {filteredData.length === 0 ? (
+    <tr>
+      <td colSpan={6} style={{ textAlign: 'center' }}>
+        No records found
+      </td>
+    </tr>
+  ) : (
+    filteredData.map((user) => (
+      <tr key={user.id}>
+        <td>{user.organization}</td>
+        <td>{user.username}</td>
+        <td>{user.email}</td>
+        <td>{user.phoneNumber}</td>
+        <td>{user.dateJoined}</td>
+        <td>
+          <span
+            className={
+              user.status === "Active"
+                ? styles.activeStatus
+                : user.status === "Blacklisted"
+                ? styles.blacklistedStatus
+                : user.status === "Pending"
+                ? styles.pendingStatus
+                : styles.inactiveStatus
+            }
+          >
+            {user.status}
+          </span>
+        </td>
+        <td>
+          <TableOptions userId={user.email} />
+        </td>
+      </tr>
+    ))
+  )}
         </tbody>
       </table>
+
       <Pagination
+        users={users}
+        handleItemsPerPageChange={handleItemsPerPageChange}
+        itemsPerPage={itemsPerPage}
         pageCount={pageCount}
         currentPage={currentPage}
         onPageChange={setCurrentPage}

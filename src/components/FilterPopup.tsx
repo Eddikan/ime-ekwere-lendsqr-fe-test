@@ -7,6 +7,9 @@ interface YourParentComponentProps {
     username: string;
     email: string;
     date: string;
+    phoneNumber: string;
+    organization: string;
+    status: string;
   }) => void; // Define the filter function prop
 }
 
@@ -18,13 +21,18 @@ const YourParentComponent: React.FC<YourParentComponentProps> = ({
     username: "",
     email: "",
     date: "",
+    organization: "",
+    phoneNumber: "",
+    status: "",
   });
 
   const togglePopup = () => {
     setIsPopupVisible(!isPopupVisible);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setFilterData({ ...filterData, [name]: value });
   };
@@ -37,15 +45,29 @@ const YourParentComponent: React.FC<YourParentComponentProps> = ({
 
   const handleReset = () => {
     console.log("Reset filters");
-    setFilterData({ username: "", email: "", date: "" }); // Reset local filter data
-    onFilterUsers({ username: "", email: "", date: "" }); // Reset the filter by calling the prop function
+    setFilterData({
+      username: "",
+      email: "",
+      date: "",
+      organization: "",
+      phoneNumber: "",
+      status: "",
+    }); // Reset local filter data
+    onFilterUsers({
+      username: "",
+      email: "",
+      date: "",
+      organization: "",
+      phoneNumber: "",
+      status: "",
+    }); // Reset the filter by calling the prop function
     togglePopup(); // Close the popup after resetting
   };
 
   return (
     <div className={styles.container}>
       <Image
-      onClick={togglePopup}
+        onClick={togglePopup}
         src="/users/filter.svg"
         alt="tripleIcon"
         priority
@@ -53,39 +75,80 @@ const YourParentComponent: React.FC<YourParentComponentProps> = ({
         height={16}
       />
 
-{isPopupVisible && (
-          <div
-            onClick={() => setIsPopupVisible(false)}
-            className={styles.dropdownBackdrop}
-          ></div>
-        )}
       {isPopupVisible && (
-        <div className={styles.overlay}>
-          <div className={styles.popupContainer}>
-            <h3>Filter Users</h3>
-            <input
-              name="username"
-              placeholder="Username"
-              value={filterData.username}
-              onChange={handleChange}
-            />
-            <input
-              name="email"
-              placeholder="Email"
-              value={filterData.email}
-              onChange={handleChange}
-            />
-            <input
-              type="date"
-              name="date"
-              value={filterData.date}
-              onChange={handleChange}
-            />
-            <div>
-              <button onClick={handleReset}>Reset</button>
-              <button onClick={handleFilter}>Filter</button>
-            </div>
-            <button onClick={togglePopup}>Close</button>
+        <div
+          onClick={() => setIsPopupVisible(false)}
+          className={styles.dropdownBackdrop}
+        ></div>
+      )}
+      {isPopupVisible && (
+        <div className={styles.popupContainer}>
+
+          <label>Organization</label>
+          <select
+            name="organization"
+            value={filterData.organization}
+            onChange={handleChange}
+          >
+            <option value="">Select</option>
+            <option value="Irorun">Irorun</option>
+            <option value="lendsqr">lendsqr</option>
+            {/* Add more options as needed */}
+          </select>
+
+          <label>Username</label>
+          <input
+            name="username"
+            placeholder="Username"
+            value={filterData.username}
+            onChange={handleChange}
+          />
+
+          <label>Email</label>
+          <input
+            name="email"
+            placeholder="Email"
+            value={filterData.email}
+            onChange={handleChange}
+          />
+
+          <label>Date</label>
+          <input
+            type="date"
+            name="date"
+            placeholder="date"
+            value={filterData.date}
+            onChange={handleChange}
+          />
+
+          <label>Phone Number</label>
+          <input
+            name="phoneNumber"
+            placeholder="Phone Number"
+            value={filterData.phoneNumber}
+            onChange={handleChange}
+          />
+
+          <label>Status</label>
+          <select
+            name="status"
+            value={filterData.status}
+            onChange={handleChange}
+          >
+            <option value="">Select</option>
+            <option value="Active">Active</option>
+            <option value="Pending">Pending</option>
+            <option value="Blacklisted">Blacklisted</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+
+          <div className={styles.buttonGroup}>
+            <button onClick={handleReset} className={styles.resetButton}>
+              Reset
+            </button>
+            <button onClick={handleFilter} className={styles.filterButton}>
+              Filter
+            </button>
           </div>
         </div>
       )}

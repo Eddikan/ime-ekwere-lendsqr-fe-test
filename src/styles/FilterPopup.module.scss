@@ -14,13 +14,69 @@
   left: 0;
   height: 100vh;
   width: 100vw;
-  z-index: 200;
+  z-index: 10;
 }
 .popupContainer {
   display: flex;
+  z-index: 11;
+  position: absolute;
+  top: 20px;
+  left: -120px;
   flex-direction: column;
   background: white; // Background color for the popup
   padding: 20px;
   border-radius: 8px; // Rounded corners
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // Optional shadow for effect
+  border: 1px solid #545f7d24;
+  box-shadow: 3px 5px 20px 0px #0000000a;
+  text-align: left;
+
+  label {
+    font-size: 14px;
+    margin:20px 0px 6px 0px;
+    font-weight: 500;
+    text-align: left;
+    font-size: 14px;
+    width: 100%;
+  }
+  input{
+    border: 1px solid #D3D9E5;
+    border-radius: 8px;
+    padding: 12px 20px ;
+    font-size: 14px;
+  }
+  select {
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid #D3D9E5;
+    border-radius: 8px;
+    color: #545F7D;
+    padding: 12px 32px 12px 12px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("/dropdown3.svg");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+  }
+  select:focus {
+    outline: none;
+  }
+  .buttonGroup{
+    margin-top: 30px;
+    display: flex;
+    gap:14px;
+    .resetButton{
+      border: 1px solid #545F7D;
+      padding:12px 30px;
+      border-radius: 8px;
+      background-color: white;
+    }
+    .filterButton{
+      border: 1px solid #39CDCC;
+      padding:12px 30px;
+      border-radius: 8px;
+      color: white;
+      background-color: #39CDCC;
+    }
+  }
 }
