@@ -1,0 +1,74 @@
+.generalDetails {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+  
+    .profile {
+      display: flex;
+      align-items: center;
+    }
+  
+    .profileImage {
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #e0e0e0;
+      border-radius: 50%;
+      font-size: 2rem;
+      color: #888;
+      margin-right: 1rem;
+    }
+  
+    .userInfo {
+      .userName {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: #333;
+        margin: 0;
+      }
+  
+      .userId {
+        font-size: 0.875rem;
+        color: #777;
+      }
+  
+      .userTier {
+        font-size: 0.875rem;
+        color: #555;
+      }
+    }
+  
+    .accountInfo {
+      text-align: right;
+  
+      .balance {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #333;
+        margin: 0;
+      }
+  
+      .accountDetails {
+        font-size: 0.875rem;
+        color: #555;
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    .generalDetails {
+      flex-direction: column;
+      align-items: flex-start;
+  
+      .accountInfo {
+        text-align: left;
+        margin-top: 1rem;
+      }
+    }
+  }
+    

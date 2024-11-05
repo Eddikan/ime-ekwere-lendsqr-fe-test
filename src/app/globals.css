@@ -15,6 +15,12 @@
   font-style: normal;
 }
 @font-face {
+  font-family: "Work Sans";
+  src: url("/fonts/WorkSans-Medium.ttf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
   font-family: "Avenir Next";
   src: url("/fonts/AvenirNext-Regular.otf") format("opentype");
   font-weight: normal;
@@ -24,6 +30,12 @@
 @font-face {
   font-family: "Avenir Next";
   src: url("/fonts/AvenirNext-Bold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "sf-compact";
+  src: url("/fonts/sf-compact-text.otf") format("opentype");
   font-weight: bold;
   font-style: normal;
 }

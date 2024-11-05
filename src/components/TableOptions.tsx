@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "@/styles/TableOptions.module.scss";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 interface TableOptionsProps {
@@ -7,7 +8,9 @@ interface TableOptionsProps {
 }
 
 const TableOptions: React.FC<TableOptionsProps> = ({ userId }) => {
-  console.log(userId)
+  const router = useRouter();
+
+  console.log(userId);
   // State to manage visibility of the options
   const [showOptions, setShowOptions] = useState(false);
 
@@ -19,6 +22,7 @@ const TableOptions: React.FC<TableOptionsProps> = ({ userId }) => {
   };
   const handleViewDetails = () => {
     setShowOptions(false);
+    router.push(`users/${userId}`);
   };
 
   // Function to toggle the visibility of the options

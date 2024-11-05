@@ -3,12 +3,12 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "@/styles/Sidebar.module.scss";
 import menuItems from "@/menuConfig/menu";
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
 type SidebarProps = {
   isOpen: boolean;
 };
 
-// side bar component here 
+// side bar component here
 const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const pathname = usePathname();
@@ -48,11 +48,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
           <div key={index}>
             <h6>{menu.section}</h6>
             {menu.routes.map((item) => (
-                <Link
+              <Link
                 key={item.name}
                 href={item.route}
                 passHref
-                className={`${styles.link} ${pathname === item.route ? styles.active : ''}`}
+                className={`${styles.link} ${
+                  pathname.includes(item.route) ? styles.active : ""
+                }`}
               >
                 <Image src={item.icon} alt={item.name} width={16} height={16} />
                 {item.name}

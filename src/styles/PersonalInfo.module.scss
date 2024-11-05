@@ -1,0 +1,44 @@
+.personalInfo {
+  background: white;
+  box-shadow: 3px 5px 20px 0px #0000000a;
+  padding: 30px;
+  border-radius: 4px;
+  .container {
+    padding-bottom: 28px;
+    padding-top: 28px;
+    border-bottom: 1px solid #E9ECF2;
+  > h2 {
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    margin: 0px 0px 30px 0px;
+    color: #213f7d;
+  }
+
+  .infoGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+
+    div {
+      display: flex;
+      flex-direction: column;
+
+      strong {
+        font-size: 12px;
+        font-weight: 400;
+        color: #545f7d;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+      }
+
+      span {
+        font-size: 16px;
+        font-weight: 500;
+        color: #545f7d;
+      }
+    }
+  }
+}
+
+}
