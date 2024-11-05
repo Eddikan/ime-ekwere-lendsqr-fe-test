@@ -7,6 +7,7 @@ interface TableOptionsProps {
 }
 
 const TableOptions: React.FC<TableOptionsProps> = ({ userId }) => {
+  console.log(userId)
   // State to manage visibility of the options
   const [showOptions, setShowOptions] = useState(false);
 
