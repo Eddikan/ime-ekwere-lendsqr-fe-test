@@ -37,3 +37,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 
 the styling consists of scss, react styled components and css
+i used react-query and axios for the api request
