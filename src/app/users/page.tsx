@@ -8,7 +8,7 @@ import styles from "@/styles/Users.module.scss";
 const UserPage = () => {
   return (
     <div className={styles.page}>
-      <p className={styles.users}>Users</p>
+     <h1 className={styles.users}>Users</h1>
       <Cards />
       <UsersTable />
     </div>
