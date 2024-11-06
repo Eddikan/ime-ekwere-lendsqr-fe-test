@@ -46,7 +46,6 @@ const Login: React.FC = () => {
   });
 
   const onSubmit = (data: LoginFormInputs) => {
-    console.log("data is", data);
     setLoading(true);
     
     // Dispatch email to the Redux store

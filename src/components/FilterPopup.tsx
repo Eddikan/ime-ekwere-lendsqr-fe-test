@@ -38,13 +38,11 @@ const YourParentComponent: React.FC<YourParentComponentProps> = ({
   };
 
   const handleFilter = () => {
-    console.log("Filtered data:", filterData);
     onFilterUsers(filterData); // Call the prop function to filter users
     togglePopup(); // Close the popup after filtering
   };
 
   const handleReset = () => {
-    console.log("Reset filters");
     setFilterData({
       username: "",
       email: "",

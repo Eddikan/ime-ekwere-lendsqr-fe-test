@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { getUsers } from "@/store/userSlice";
 import { UserType } from "@/interfaces/users";
 import Pagination from "@/components/Pagination";
-import Loader from "@/components/Loader"
+import Loader from "@/components/Loader";
 import FilterPopup from "@/components/FilterPopup";
 import TableOptions from "@/components/TableOptions";
 const UsersTable: React.FC = () => {
@@ -19,9 +19,7 @@ const UsersTable: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-console.log('usersss are',!users.length)
-
-      if(!users.length)  setLoading(true);
+        if (!users.length) setLoading(true);
         await dispatch(getUsers());
       } catch (error) {
         console.error(error);
@@ -62,12 +60,15 @@ console.log('usersss are',!users.length)
         (filterData.organization === "" ||
           user.organization.includes(filterData.organization)) &&
         (filterData.username === "" ||
-          user.username.toLowerCase().includes(filterData.username.toLowerCase())) &&
+          user.username
+            .toLowerCase()
+            .includes(filterData.username.toLowerCase())) &&
         (filterData.email === "" ||
           user.email.toLowerCase().includes(filterData.email.toLowerCase())) &&
         (filterData.phoneNumber === "" ||
           user.phoneNumber.includes(filterData.phoneNumber)) &&
-        (filterData.date === "" || user.dateJoined.startsWith(filterData.date)) &&
+        (filterData.date === "" ||
+          user.dateJoined.startsWith(filterData.date)) &&
         (filterData.status === "" || user.status === filterData.status)
       );
     });
@@ -76,8 +77,7 @@ console.log('usersss are',!users.length)
     setCurrentPage(1); // Reset to the first page when filter changes
   };
 
-
-  if (loading ) return <Loader />
+  if (loading) return <Loader />;
   if (error) return <p>{error}</p>;
 
   return (
@@ -125,41 +125,41 @@ console.log('usersss are',!users.length)
           </tr>
         </thead>
         <tbody>
-        {filteredData.length === 0 ? (
-    <tr>
-      <td colSpan={6} style={{ textAlign: 'center' }}>
-        No records found
-      </td>
-    </tr>
-  ) : (
-    filteredData.map((user) => (
-      <tr key={user.id}>
-        <td>{user.organization}</td>
-        <td>{user.username}</td>
-        <td>{user.email}</td>
-        <td>{user.phoneNumber}</td>
-        <td>{user.dateJoined}</td>
-        <td>
-          <span
-            className={
-              user.status === "Active"
-                ? styles.activeStatus
-                : user.status === "Blacklisted"
-                ? styles.blacklistedStatus
-                : user.status === "Pending"
-                ? styles.pendingStatus
-                : styles.inactiveStatus
-            }
-          >
-            {user.status}
-          </span>
-        </td>
-        <td>
-          <TableOptions userId={user.email} />
-        </td>
-      </tr>
-    ))
-  )}
+          {filteredData.length === 0 ? (
+            <tr>
+              <td colSpan={6} style={{ textAlign: "center" }}>
+                No records found
+              </td>
+            </tr>
+          ) : (
+            filteredData.map((user) => (
+              <tr key={user.id}>
+                <td>{user.organization}</td>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
+                <td>{user.phoneNumber}</td>
+                <td>{user.dateJoined}</td>
+                <td>
+                  <span
+                    className={
+                      user.status === "active"
+                        ? styles.activeStatus
+                        : user.status === "blacklisted"
+                        ? styles.blacklistedStatus
+                        : user.status === "pending"
+                        ? styles.pendingStatus
+                        : styles.inactiveStatus
+                    }
+                  >
+                    {user.status}
+                  </span>
+                </td>
+                <td>
+                  <TableOptions userId={user.id} />
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
 

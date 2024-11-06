@@ -1,17 +1,19 @@
 "use client";
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import PersonalInfo from "@/components/PersonalInfo";
 import styles from "@/styles/UserDetailsPage.module.scss";
 import Image from "next/image";
-
+import useCurrentUser from "@/utils/helpers/useCurrentUser"
 import { useRouter } from "next/navigation";
-
 const UserDetailsPage: React.FC = () => {
   const router = useRouter();
+  const {currentUser} = useCurrentUser()
+
   const [activeTab, setActiveTab] = useState("general");
   const handleBackClick = () => {
     router.back();
   };
+  if (!currentUser) return <div>User not found</div>;
   return (
     <div className={styles.userDetailsPage}>
       <header className={styles.header}>
@@ -46,8 +48,8 @@ const UserDetailsPage: React.FC = () => {
               height={106}
             />{" "}
             <div>
-              <h2 className={styles.name}>Grace Effiom</h2>
-              <p className={styles.userID}>LSQFF587g90</p>
+              <h2 className={styles.name}>{currentUser && currentUser.username}</h2>
+              <p className={styles.userID}>{currentUser.id}</p>
             </div>
             <div className={styles.tier}>
               <p>User’s Tier</p>
@@ -76,8 +78,8 @@ const UserDetailsPage: React.FC = () => {
               </div>
             </div>
             <div className={styles.balance}>
-              <h3>₦200,000.00</h3>
-              <p>9912345678 / Providus Bank</p>
+              <h3>{currentUser.bankDetails.balance}</h3>
+              <p>{currentUser.bankDetails.accountNumber} / {currentUser.bankDetails.bank}</p>
             </div>
           </div>
         </div>

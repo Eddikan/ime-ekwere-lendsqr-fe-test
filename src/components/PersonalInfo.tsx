@@ -1,7 +1,11 @@
 import React from "react";
 import styles from "@/styles/PersonalInfo.module.scss";
+import useCurrentUser from "@/utils/helpers/useCurrentUser";
 
 const PersonalInfo: React.FC = () => {
+  const { currentUser } = useCurrentUser();
+  if (!currentUser) return <div>User not found</div>;
+
   return (
     <div className={styles.personalInfo}>
       <div className={styles.container}>
@@ -9,129 +13,109 @@ const PersonalInfo: React.FC = () => {
         <div className={styles.infoGrid}>
           <div>
             <strong>Full Name</strong>
-            <span>Grace Effiom</span>
+            <span>{currentUser.fullName}</span>
           </div>
           <div>
             <strong>Phone Number</strong>
-            <span>07060780922</span>
+            <span>{currentUser.phoneNumber}</span>
           </div>
           <div>
             <strong>Email Address</strong>
-            <span>grace@gmail.com</span>
+            <span>{currentUser.email}</span>
           </div>
           <div>
             <strong>BVN</strong>
-            <span>07060780922</span>
+            <span>{currentUser.bvn}</span>
           </div>
           <div>
             <strong>Gender</strong>
-            <span>Female</span>
+            <span>{currentUser.gender}</span>
           </div>
           <div>
             <strong>Marital Status</strong>
-            <span>Single</span>
+            <span>{currentUser.maritalStatus}</span>
           </div>
           <div>
             <strong>Children</strong>
-            <span>None</span>
+            <span>{currentUser.children}</span>
           </div>
           <div>
-            <strong>Type of residence</strong>
-            <span>Parent’s Apartment</span>
+            <strong>Type of Residence</strong>
+            <span>{currentUser.typeOfResidence}</span>
           </div>
-          {/* Add other personal info fields here */}
         </div>
       </div>
+
       <div className={styles.container}>
         <h2>Education and Employment</h2>
         <div className={styles.infoGrid}>
           <div>
-            <strong>level of education</strong>
-            <span>B.Sc</span>
+            <strong>Level of Education</strong>
+            <span>{currentUser.levelOfEducation}</span>
           </div>
           <div>
-            <strong>employment status</strong>
-            <span>Employed</span>
+            <strong>Employment Status</strong>
+            <span>{currentUser.employmentStatus}</span>
           </div>
           <div>
-            <strong>sector of employment</strong>
-            <span>FinTech</span>
+            <strong>Sector of Employment</strong>
+            <span>{currentUser.sectorOfEmployment}</span>
           </div>
           <div>
-            <strong>Duration of employment</strong>
-            <span>2 years</span>
+            <strong>Duration of Employment</strong>
+            <span>{currentUser.durationOfEmployment}</span>
           </div>
           <div>
-            <strong>office email</strong>
-            <span>grace@lendsqr.com</span>
+            <strong>Office Email</strong>
+            <span>{currentUser.email}</span>
           </div>
           <div>
-            <strong>Monthly income</strong>
-            <span>₦200,000.00- ₦400,000.00</span>
+            <strong>Monthly Income</strong>
+            <span>{currentUser.monthlyIncome}</span>
           </div>
           <div>
-            <strong>loan repayment</strong>
-            <span>40,000</span>
+            <strong>Loan Repayment</strong>
+            <span>{currentUser.loanRepayment}</span>
           </div>
-          {/* Add other personal info fields here */}
         </div>
       </div>
+
       <div className={styles.container}>
         <h2>Socials</h2>
         <div className={styles.infoGrid}>
           <div>
             <strong>Twitter</strong>
-            <span>@grace_effiom</span>
+            <span>{currentUser.socials.twitter}</span>
           </div>
           <div>
             <strong>Facebook</strong>
-            <span>Grace Effiom</span>
+            <span>{currentUser.socials.facebook}</span>
           </div>
           <div>
             <strong>Instagram</strong>
-            <span>@grace_effiom</span>
+            <span>{currentUser.socials.instagram}</span>
           </div>
         </div>
       </div>
+
       <div className={styles.container}>
         <h2>Guarantor</h2>
         <div className={styles.infoGrid}>
           <div>
-            <strong>full Name</strong>
-            <span>Debby Ogana</span>
+            <strong>Full Name</strong>
+            <span>{currentUser.guarantor.fullName}</span>
           </div>
           <div>
             <strong>Phone Number</strong>
-            <span>07060780922</span>
+            <span>{currentUser.guarantor.phoneNumber}</span>
           </div>
           <div>
             <strong>Email Address</strong>
-            <span>debby@gmail.com</span>
+            <span>{currentUser.guarantor.email}</span>
           </div>
           <div>
             <strong>Relationship</strong>
-            <span>Sister</span>
-          </div>
-        </div>
-      </div>
-      <div className={styles.container}>
-        <h2></h2>
-        <div className={styles.infoGrid}>
-          <div>
-            <strong>full Name</strong>
-            <span>Debby Ogana</span>
-          </div>
-          <div>
-            <strong>Phone Number</strong>
-            <span>07060780922</span>
-          </div>
-          <div>
-            <strong>Email Address</strong>
-            <span>debby@gmail.com</span>
-          </div>
-          <div>
-            <strong>Relationship</strong>
-            <span>Sister</span>
+            <span>{currentUser.guarantor.relationship}</span>
           </div>
         </div>
       </div>
